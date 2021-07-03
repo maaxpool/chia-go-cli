@@ -1,3 +1,3 @@
-full_node/
-wallet/
-.chia-go-cli-store/
+/full_node
+/wallet
+/.chia-go-cli-store/

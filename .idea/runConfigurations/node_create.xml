@@ -4,7 +4,7 @@
     <working_directory value="$PROJECT_DIR$" />
     <parameters value="node create --url=&quot;https://143.198.153.80/&quot; --name=&quot;test&quot;" />
     <kind value="PACKAGE" />
-    <package value="chia-go-cli" />
+    <package value="github.com/LuttyYang/chia-go-cli" />
     <directory value="$PROJECT_DIR$" />
     <filePath value="$PROJECT_DIR$/main.go" />
     <method v="2" />

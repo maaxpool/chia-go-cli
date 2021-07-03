@@ -4,7 +4,7 @@
     <working_directory value="$PROJECT_DIR$" />
     <parameters value="node list" />
     <kind value="PACKAGE" />
-    <package value="chia-go-cli" />
+    <package value="github.com/LuttyYang/chia-go-cli" />
     <directory value="$PROJECT_DIR$" />
     <filePath value="$PROJECT_DIR$/main.go" />
     <method v="2" />
