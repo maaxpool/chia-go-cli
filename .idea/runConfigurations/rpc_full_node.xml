@@ -2,7 +2,7 @@
   <configuration default="false" name="rpc full-node" type="GoApplicationRunConfiguration" factoryName="Go Application">
     <module name="chia-go-cli" />
     <working_directory value="$PROJECT_DIR$" />
-    <parameters value="rpc full-node GetBlockchainState --node=test" />
+    <parameters value="rpc full-node" />
     <kind value="PACKAGE" />
     <package value="github.com/LuttyYang/chia-go-cli" />
     <directory value="$PROJECT_DIR$" />

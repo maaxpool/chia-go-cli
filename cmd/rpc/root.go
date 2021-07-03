@@ -30,6 +30,7 @@ func NewRootCommand() *cobra.Command {
 
 	cmd.AddCommand(newWalletCommand())
 	cmd.AddCommand(newFullNodeCommand())
+	cmd.AddCommand(newSharedCommand())
 
 	return cmd
 }
@@ -48,9 +49,23 @@ func buildApi(cmd *cobra.Command, apis []*common.TemplateRpcMethod, call buildAp
 			case reflect.Int:
 				if value.Default == nil {
 					value.Data = flag.Int(value.Name, 0, value.Desc)
+					_ = apiCommand.MarkFlagRequired(value.Name)
 				} else {
 					value.Data = flag.Int(value.Name, value.Default.(int), value.Desc)
+				}
+			case reflect.String:
+				if value.Default == nil {
+					value.Data = flag.String(value.Name, "", value.Desc)
 					_ = apiCommand.MarkFlagRequired(value.Name)
+				} else {
+					value.Data = flag.String(value.Name, value.Default.(string), value.Desc)
+				}
+			case reflect.Bool:
+				if value.Default == nil {
+					value.Data = flag.Bool(value.Name, false, value.Desc)
+					_ = apiCommand.MarkFlagRequired(value.Name)
+				} else {
+					value.Data = flag.Bool(value.Name, value.Default.(bool), value.Desc)
 				}
 			default:
 				log.Panicf("build api command fail, not support type: %v", value.Type)
