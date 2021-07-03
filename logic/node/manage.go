@@ -16,7 +16,7 @@ import (
 	"path/filepath"
 )
 
-var defaultTestData = []byte("chia-go-cli")
+var defaultTestData = []byte("github.com/LuttyYang/chia-go-cli")
 
 type Manage struct {
 	lock     *flock.Flock

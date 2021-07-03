@@ -1,7 +1,7 @@
 package node
 
 import (
-	"chia-go-cli/logic/node"
+	"github.com/LuttyYang/chia-go-cli/logic/node"
 	"github.com/spf13/cobra"
 )
 
