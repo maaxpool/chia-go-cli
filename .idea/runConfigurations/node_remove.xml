@@ -1,0 +1,12 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="node remove" type="GoApplicationRunConfiguration" factoryName="Go Application">
+    <module name="chia-go-cli" />
+    <working_directory value="$PROJECT_DIR$" />
+    <parameters value="node remove --name=test" />
+    <kind value="PACKAGE" />
+    <package value="chia-go-cli" />
+    <directory value="$PROJECT_DIR$" />
+    <filePath value="$PROJECT_DIR$/main.go" />
+    <method v="2" />
+  </configuration>
+</component>

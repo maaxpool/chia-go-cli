@@ -1,0 +1,12 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="node add wallet" type="GoApplicationRunConfiguration" factoryName="Go Application">
+    <module name="chia-go-cli" />
+    <working_directory value="$PROJECT_DIR$" />
+    <parameters value="node add --name=test --cert-type=private_wallet --crt-path=wallet/private_wallet.crt --key-path=wallet/private_wallet.key" />
+    <kind value="PACKAGE" />
+    <package value="chia-go-cli" />
+    <directory value="$PROJECT_DIR$" />
+    <filePath value="$PROJECT_DIR$/main.go" />
+    <method v="2" />
+  </configuration>
+</component>

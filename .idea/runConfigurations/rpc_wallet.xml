@@ -1,0 +1,12 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="rpc wallet" type="GoApplicationRunConfiguration" factoryName="Go Application">
+    <module name="chia-go-cli" />
+    <working_directory value="$PROJECT_DIR$" />
+    <parameters value="rpc wallet GetWalletBalance --node=test --wallet-id=1" />
+    <kind value="PACKAGE" />
+    <package value="chia-go-cli" />
+    <directory value="$PROJECT_DIR$" />
+    <filePath value="$PROJECT_DIR$/main.go" />
+    <method v="2" />
+  </configuration>
+</component>
