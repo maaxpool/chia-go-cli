@@ -10,12 +10,13 @@ import (
 )
 
 type TemplateValue struct {
-	Name    string
-	Desc    string
-	Type    reflect.Kind
-	Default interface{}
-	Path    string
-	Data    interface{}
+	Name       string
+	Desc       string
+	Type       reflect.Kind
+	Default    interface{}
+	Path       string
+	Data       interface{}
+	FormatFunc func(data interface{}) interface{}
 }
 
 type TemplateRpcMethod struct {
@@ -48,7 +49,12 @@ func (t *TemplateRpcMethod) buildBody() (ret []byte, err error) {
 
 	template := t.JsonTemplate
 	for _, val := range t.ValInfo {
-		template, err = sjson.Set(template, val.Path, val.Data)
+		data := val.Data
+		if val.FormatFunc != nil {
+			data = val.FormatFunc(data)
+		}
+
+		template, err = sjson.Set(template, val.Path, data)
 		if err != nil {
 			return nil, err
 		}
