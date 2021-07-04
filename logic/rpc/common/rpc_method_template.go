@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"github.com/tidwall/sjson"
 	"net/http"
 	"net/url"
@@ -69,9 +70,18 @@ func (t *TemplateRpcMethod) buildBody() (ret []byte, err error) {
 
 	template := t.JsonTemplate
 	for _, val := range t.ValInfo {
-		data := val.Data
+		refData := reflect.ValueOf(val.Data)
+		if refData.IsNil() {
+			return nil, fmt.Errorf("value %s is nil", val.Name)
+		}
+
+		if refData.Kind() == reflect.Ptr {
+			refData = refData.Elem()
+		}
+
+		data := refData.Interface()
 		if val.FormatFunc != nil {
-			data, err = val.FormatFunc(data)
+			data, err = val.FormatFunc(refData.Interface())
 			if err != nil {
 				return nil, err
 			}
