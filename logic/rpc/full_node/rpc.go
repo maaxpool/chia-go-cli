@@ -212,7 +212,22 @@ var RpcApis = []*common.TemplateRpcMethod{
 			},
 		},
 	},
-	//TODO: push_tx
+	{
+		MethodName:   "PushTx",
+		Desc:         "Pushes a transaction / spend bundle to the mempool and blockchain. Returns whether the spend bundle was successfully included into the mempool",
+		Method:       "POST",
+		Url:          "push_tx",
+		JsonTemplate: `{"spend_bundle": ""}`,
+		ValInfo: []*common.TemplateValue{
+			{
+				Name:       "spend-bundle",
+				Desc:       "Spend bundle to submit, in JSON",
+				Type:       reflect.String,
+				Path:       "spend_bundle",
+				FormatFunc: common.String2JsonFormatFunc,
+			},
+		},
+	},
 	{
 		MethodName:   "GetAllMempoolTxIds",
 		Desc:         "Returns a list of all transaction IDs(spend bundle hashes) in the mempool",

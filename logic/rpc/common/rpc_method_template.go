@@ -2,6 +2,8 @@ package common
 
 import (
 	"bytes"
+	"encoding/json"
+	"errors"
 	"github.com/tidwall/sjson"
 	"net/http"
 	"net/url"
@@ -16,7 +18,7 @@ type TemplateValue struct {
 	Default    interface{}
 	Path       string
 	Data       interface{}
-	FormatFunc func(data interface{}) interface{}
+	FormatFunc func(data interface{}) (interface{}, error)
 }
 
 type TemplateRpcMethod struct {
@@ -26,6 +28,24 @@ type TemplateRpcMethod struct {
 	Url          string
 	JsonTemplate string
 	ValInfo      []*TemplateValue
+}
+
+var String2JsonFormatFunc = func(data interface{}) (interface{}, error) {
+	var (
+		result  map[string]interface{}
+		jsonRaw string
+		ok      bool
+	)
+
+	if jsonRaw, ok = data.(string); !ok {
+		return nil, errors.New("can not convert param to string")
+	}
+
+	err := json.Unmarshal([]byte(jsonRaw), &result)
+	if err != nil {
+		return nil, err
+	}
+	return result, nil
 }
 
 func (t *TemplateRpcMethod) Name() string {
@@ -51,7 +71,10 @@ func (t *TemplateRpcMethod) buildBody() (ret []byte, err error) {
 	for _, val := range t.ValInfo {
 		data := val.Data
 		if val.FormatFunc != nil {
-			data = val.FormatFunc(data)
+			data, err = val.FormatFunc(data)
+			if err != nil {
+				return nil, err
+			}
 		}
 
 		template, err = sjson.Set(template, val.Path, data)
