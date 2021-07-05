@@ -122,16 +122,16 @@ var RpcApis = []*common.TemplateRpcMethod{
 		JsonTemplate: `{"older_block_header_hash": "", "newer_block_header_hash": ""}`,
 		ValInfo: []*common.TemplateValue{
 			{
-				Name: "older_block_header_hash",
+				Name: "older-block-header-hash",
 				Desc: "The start header hash",
 				Type: reflect.String,
-				Path: "older-block-header-hash",
+				Path: "older_block_header_hash",
 			},
 			{
-				Name: "newer_block_header_hash",
+				Name: "newer-block-header-hash",
 				Desc: "The end header hash",
 				Type: reflect.String,
-				Path: "newer-block-header-hash",
+				Path: "newer_block_header_hash",
 			},
 		},
 	},
@@ -143,10 +143,10 @@ var RpcApis = []*common.TemplateRpcMethod{
 		JsonTemplate: `{"header_hash": ""}`,
 		ValInfo: []*common.TemplateValue{
 			{
-				Name: "header_hash",
+				Name: "header-hash",
 				Desc: "Header hash of the block",
 				Type: reflect.String,
-				Path: "header-hash",
+				Path: "header_hash",
 			},
 		},
 	},
@@ -172,28 +172,28 @@ var RpcApis = []*common.TemplateRpcMethod{
 		JsonTemplate: `{"puzzle_hash": "", "start_height": 0, "end_height": 0, "include_spend_coins": false}`,
 		ValInfo: []*common.TemplateValue{
 			{
-				Name: "puzzle_hash",
+				Name: "puzzle-hash",
 				Desc: "Puzzle hash to search for",
 				Type: reflect.String,
-				Path: "puzzle-hash",
+				Path: "puzzle_hash",
 			},
 			{
-				Name: "start_height",
+				Name: "start-height",
 				Desc: "Confirmation start height for search",
 				Type: reflect.Int,
-				Path: "start-height",
+				Path: "start_height",
 			},
 			{
-				Name: "end_height",
+				Name: "end-height",
 				Desc: "Confirmation end height for search",
 				Type: reflect.Int,
-				Path: "end-height",
+				Path: "end_height",
 			},
 			{
-				Name: "include_spend_coins",
+				Name: "include-spend-coins",
 				Desc: "Whether to include spent coins too, instead of just unspent",
 				Type: reflect.Bool,
-				Path: "include-spend-coins",
+				Path: "include_spend_coins",
 			},
 		},
 	},
@@ -250,10 +250,10 @@ var RpcApis = []*common.TemplateRpcMethod{
 		JsonTemplate: `{"tx_id": ""}`,
 		ValInfo: []*common.TemplateValue{
 			{
-				Name: "tx_id",
+				Name: "tx-id",
 				Desc: "Spend bundle hash",
 				Type: reflect.String,
-				Path: "tx-id",
+				Path: "tx_id",
 			},
 		},
 	},
