@@ -6,7 +6,10 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-18.04, macos-10.15]
     steps:
       - name: Set up Go 1.16
         uses: actions/setup-go@v2
@@ -23,12 +26,21 @@ jobs:
       - name: Build chia go cli binary for Linux amd64
         run: |
           go mod download
-          go build -o chia-cli main.go
+          go build -o chia-go-cli main.go
         working-directory: chia-go-cli
 
       - name: Upload artifact
+        if: matrix.os == 'ubuntu-18.04'
         uses: actions/upload-artifact@v2
         with:
-          name: chia-cli-amd64
-          path: chia-go-cli/chia-cli
-          retention-days: 1
+          name: chia-go-cli-amd64
+          path: chia-go-cli/chia-go-cli
+          retention-days: 7
+
+      - name: Upload artifact
+        if: matrix.os == 'macos-10.15'
+        uses: actions/upload-artifact@v2
+        with:
+          name: chia-go-cli-macos
+          path: chia-go-cli/chia-go-cli
+          retention-days: 7
