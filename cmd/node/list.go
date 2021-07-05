@@ -1,7 +1,7 @@
 package node
 
 import (
-	"github.com/LuttyYang/chia-go-cli/logic/node"
+	"chia-go-cli/logic/node"
 	"github.com/olekukonko/tablewriter"
 	"github.com/spf13/cobra"
 	"os"

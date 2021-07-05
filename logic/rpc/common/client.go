@@ -1,9 +1,9 @@
 package common
 
 import (
+	"chia-go-cli/logic/node"
 	"crypto/tls"
 	"fmt"
-	"github.com/LuttyYang/chia-go-cli/logic/node"
 	"net/http"
 	"net/url"
 )

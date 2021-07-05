@@ -1,7 +1,7 @@
 package full_node
 
 import (
-	"github.com/LuttyYang/chia-go-cli/logic/rpc/common"
+	"chia-go-cli/logic/rpc/common"
 	"reflect"
 )
 

@@ -1,6 +1,6 @@
 package main
 
-import "github.com/LuttyYang/chia-go-cli/cmd"
+import "chia-go-cli/cmd"
 
 func main() {
 	err := cmd.RootCmd.Execute()

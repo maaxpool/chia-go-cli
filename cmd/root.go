@@ -1,9 +1,9 @@
 package cmd
 
 import (
+	"chia-go-cli/cmd/node"
+	"chia-go-cli/cmd/rpc"
 	"fmt"
-	"github.com/LuttyYang/chia-go-cli/cmd/node"
-	"github.com/LuttyYang/chia-go-cli/cmd/rpc"
 	"github.com/spf13/cobra"
 	"io"
 	"os"

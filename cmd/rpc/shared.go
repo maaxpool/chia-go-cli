@@ -2,11 +2,11 @@ package rpc
 
 import (
 	"bytes"
+	"chia-go-cli/logic/node"
+	"chia-go-cli/logic/rpc/common"
+	"chia-go-cli/logic/rpc/shared"
 	"encoding/json"
 	"fmt"
-	"github.com/LuttyYang/chia-go-cli/logic/node"
-	"github.com/LuttyYang/chia-go-cli/logic/rpc/common"
-	"github.com/LuttyYang/chia-go-cli/logic/rpc/shared"
 	"github.com/spf13/cobra"
 	"io"
 )

@@ -1,4 +1,4 @@
-module github.com/LuttyYang/chia-go-cli
+module chia-go-cli
 
 go 1.16
 

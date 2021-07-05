@@ -1,7 +1,7 @@
 package rpc
 
 import (
-	"github.com/LuttyYang/chia-go-cli/logic/rpc/common"
+	"chia-go-cli/logic/rpc/common"
 	"github.com/spf13/cobra"
 	"log"
 	"reflect"
