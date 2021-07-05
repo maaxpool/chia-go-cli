@@ -1,0 +1,34 @@
+name: ci
+
+on:
+  push:
+    branches: ['master']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Go 1.16
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.16.5
+
+      - name: Checkout chia go cli core code
+        uses: actions/checkout@v2
+        with:
+          path: chia-go-cli
+          ref: master
+          fetch-depth: 0
+
+      - name: Build chia go cli binary for Linux amd64
+        run: |
+          go mod download
+          go build -o chia-cli main.go
+        working-directory: chia-go-cli
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: chia-cli-amd64
+          path: chia-go-cli/chia-cli
+          retention-days: 1
