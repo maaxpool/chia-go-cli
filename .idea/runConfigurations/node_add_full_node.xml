@@ -4,7 +4,7 @@
     <working_directory value="$PROJECT_DIR$" />
     <parameters value="node add --name=test --cert-type=private_full_node --crt-path=full_node/private_full_node.crt --key-path=full_node/private_full_node.key" />
     <kind value="PACKAGE" />
-    <package value="github.com/LuttyYang/chia-go-cli" />
+    <package value="chia-go-cli" />
     <directory value="$PROJECT_DIR$" />
     <filePath value="$PROJECT_DIR$/main.go" />
     <method v="2" />

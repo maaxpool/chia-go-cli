@@ -4,7 +4,8 @@ import (
 	"bytes"
 	"chia-go-cli/logic/node"
 	"chia-go-cli/logic/rpc/common"
-	"chia-go-cli/logic/rpc/full_node"
+	"chia-go-cli/sdk/client"
+	"chia-go-cli/sdk/full_node"
 	"encoding/json"
 	"fmt"
 	"github.com/spf13/cobra"
@@ -27,7 +28,7 @@ func newFullNodeCommand() *cobra.Command {
 	return cmd
 }
 
-func buildFullNodeApiCall(api *common.TemplateRpcMethod) func(cmd *cobra.Command, args []string) error {
+func buildFullNodeApiCall(api *client.TemplateRpcMethod) func(cmd *cobra.Command, args []string) error {
 	return func(cmd *cobra.Command, args []string) error {
 		manage, err := node.NewManage(storePath, password)
 		if err != nil {

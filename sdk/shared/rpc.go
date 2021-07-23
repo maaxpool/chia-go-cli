@@ -1,11 +1,11 @@
 package shared
 
 import (
-	"chia-go-cli/logic/rpc/common"
+	"chia-go-cli/sdk/client"
 	"reflect"
 )
 
-var RpcApis = []*common.TemplateRpcMethod{
+var RpcApis = []*client.TemplateRpcMethod{
 	{
 		MethodName:   "GetConnections",
 		Desc:         "Returns a list of peers that we are currently connected to",
@@ -19,7 +19,7 @@ var RpcApis = []*common.TemplateRpcMethod{
 		Method:       "POST",
 		Url:          "open_connection",
 		JsonTemplate: `{"host": "", "port": 0}`,
-		ValInfo: []*common.TemplateValue{
+		ValInfo: []*client.TemplateValue{
 			{
 				Name:    "host",
 				Desc:    "ip or dns name of the peer",
@@ -42,7 +42,7 @@ var RpcApis = []*common.TemplateRpcMethod{
 		Method:       "POST",
 		Url:          "close_connection",
 		JsonTemplate: `{"node_id": ""}`,
-		ValInfo: []*common.TemplateValue{
+		ValInfo: []*client.TemplateValue{
 			{
 				Name:    "node-id",
 				Desc:    "node id of the peer",

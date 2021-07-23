@@ -4,7 +4,8 @@ import (
 	"bytes"
 	"chia-go-cli/logic/node"
 	"chia-go-cli/logic/rpc/common"
-	"chia-go-cli/logic/rpc/shared"
+	"chia-go-cli/sdk/client"
+	"chia-go-cli/sdk/shared"
 	"encoding/json"
 	"fmt"
 	"github.com/spf13/cobra"
@@ -27,7 +28,7 @@ func newSharedCommand() *cobra.Command {
 	return cmd
 }
 
-func buildSharedApiCall(api *common.TemplateRpcMethod) func(cmd *cobra.Command, args []string) error {
+func buildSharedApiCall(api *client.TemplateRpcMethod) func(cmd *cobra.Command, args []string) error {
 	return func(cmd *cobra.Command, args []string) error {
 		manage, err := node.NewManage(storePath, password)
 		if err != nil {

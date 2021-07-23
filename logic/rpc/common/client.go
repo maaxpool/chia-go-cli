@@ -2,17 +2,14 @@ package common
 
 import (
 	"chia-go-cli/logic/node"
-	"crypto/tls"
+	sdk "chia-go-cli/sdk/client"
 	"fmt"
 	"net/http"
 	"net/url"
 )
 
 type Client struct {
-	httpClient *http.Client
-	typ        node.CertType
-	node       *node.Node
-	port       uint16
+	client *sdk.Client
 }
 
 func NewClient(node *node.Node, port uint16, typ node.CertType) (*Client, error) {
@@ -21,36 +18,23 @@ func NewClient(node *node.Node, port uint16, typ node.CertType) (*Client, error)
 		return nil, err
 	}
 
-	tlsConfig := &tls.Config{
-		Certificates:       []tls.Certificate{*cert},
-		InsecureSkipVerify: true,
+	hostUrl, err := url.Parse(node.NodeUrl())
+	if err != nil {
+		return nil, err
 	}
 
-	transport := &http.Transport{
-		TLSClientConfig: tlsConfig,
+	hostUrl.Host = fmt.Sprintf("%s:%d", hostUrl.Hostname(), port)
+
+	client, err := sdk.NewClient(hostUrl.String(), cert)
+	if err != nil {
+		return nil, err
 	}
 
 	return &Client{
-		node:       node,
-		port:       port,
-		typ:        typ,
-		httpClient: &http.Client{Transport: transport},
+		client: client,
 	}, nil
 }
 
-func (c *Client) RawRequest(method RpcMethod) (*http.Response, error) {
-	hostUrl, err := url.Parse(c.node.NodeUrl())
-	if err != nil {
-		return nil, err
-	}
-
-	hostUrl.Host = fmt.Sprintf("%s:%d", hostUrl.Hostname(), c.port)
-
-	req, err := method.BuildRequest(hostUrl)
-	if err != nil {
-		return nil, err
-	}
-	req.Header.Add("Content-Type", "application/json")
-
-	return c.httpClient.Do(req)
+func (c *Client) RawRequest(method sdk.RpcMethod) (*http.Response, error) {
+	return c.client.RawRequest(method)
 }

@@ -4,7 +4,8 @@ import (
 	"bytes"
 	"chia-go-cli/logic/node"
 	"chia-go-cli/logic/rpc/common"
-	"chia-go-cli/logic/rpc/wallet"
+	"chia-go-cli/sdk/client"
+	"chia-go-cli/sdk/wallet"
 	"encoding/json"
 	"fmt"
 	"github.com/spf13/cobra"
@@ -27,7 +28,7 @@ func newWalletCommand() *cobra.Command {
 	return cmd
 }
 
-func buildWalletApiCall(api *common.TemplateRpcMethod) func(cmd *cobra.Command, args []string) error {
+func buildWalletApiCall(api *client.TemplateRpcMethod) func(cmd *cobra.Command, args []string) error {
 	return func(cmd *cobra.Command, args []string) error {
 		manage, err := node.NewManage(storePath, password)
 		if err != nil {

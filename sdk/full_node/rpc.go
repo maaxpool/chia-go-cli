@@ -1,11 +1,11 @@
 package full_node
 
 import (
-	"chia-go-cli/logic/rpc/common"
+	"chia-go-cli/sdk/client"
 	"reflect"
 )
 
-var RpcApis = []*common.TemplateRpcMethod{
+var RpcApis = []*client.TemplateRpcMethod{
 	{
 		MethodName:   "GetBlockchainState",
 		Desc:         "Get the blockchain state",
@@ -19,7 +19,7 @@ var RpcApis = []*common.TemplateRpcMethod{
 		Method:       "POST",
 		Url:          "get_block",
 		JsonTemplate: `{"header_hash": ""}`,
-		ValInfo: []*common.TemplateValue{
+		ValInfo: []*client.TemplateValue{
 			{
 				Name: "header-hash",
 				Desc: "Header hash",
@@ -34,7 +34,7 @@ var RpcApis = []*common.TemplateRpcMethod{
 		Method:       "POST",
 		Url:          "get_blocks",
 		JsonTemplate: `{"start": 0, "end": 9999, "exclude_header_hash": false}`,
-		ValInfo: []*common.TemplateValue{
+		ValInfo: []*client.TemplateValue{
 			{
 				Name: "start",
 				Desc: "The start height",
@@ -62,7 +62,7 @@ var RpcApis = []*common.TemplateRpcMethod{
 		Method:       "POST",
 		Url:          "get_block_record_by_height",
 		JsonTemplate: `{"height": 0}`,
-		ValInfo: []*common.TemplateValue{
+		ValInfo: []*client.TemplateValue{
 			{
 				Name: "height",
 				Desc: "The height to get",
@@ -77,7 +77,7 @@ var RpcApis = []*common.TemplateRpcMethod{
 		Method:       "POST",
 		Url:          "get_block_record",
 		JsonTemplate: `{"header_hash": ""}`,
-		ValInfo: []*common.TemplateValue{
+		ValInfo: []*client.TemplateValue{
 			{
 				Name: "header-hash",
 				Desc: "The block's header_hash",
@@ -92,7 +92,7 @@ var RpcApis = []*common.TemplateRpcMethod{
 		Method:       "POST",
 		Url:          "get_block_records",
 		JsonTemplate: `{"start": 0, "end": 9999}`,
-		ValInfo: []*common.TemplateValue{
+		ValInfo: []*client.TemplateValue{
 			{
 				Name: "start",
 				Desc: "The start height",
@@ -120,7 +120,7 @@ var RpcApis = []*common.TemplateRpcMethod{
 		Method:       "POST",
 		Url:          "get_network_space",
 		JsonTemplate: `{"older_block_header_hash": "", "newer_block_header_hash": ""}`,
-		ValInfo: []*common.TemplateValue{
+		ValInfo: []*client.TemplateValue{
 			{
 				Name: "older-block-header-hash",
 				Desc: "The start header hash",
@@ -141,7 +141,7 @@ var RpcApis = []*common.TemplateRpcMethod{
 		Method:       "POST",
 		Url:          "get_additions_and_removals",
 		JsonTemplate: `{"header_hash": ""}`,
-		ValInfo: []*common.TemplateValue{
+		ValInfo: []*client.TemplateValue{
 			{
 				Name: "header-hash",
 				Desc: "Header hash of the block",
@@ -170,7 +170,7 @@ var RpcApis = []*common.TemplateRpcMethod{
 		Method:       "POST",
 		Url:          "get_coin_records_by_puzzle_hash",
 		JsonTemplate: `{"puzzle_hash": "", "start_height": 0, "end_height": 0, "include_spend_coins": false}`,
-		ValInfo: []*common.TemplateValue{
+		ValInfo: []*client.TemplateValue{
 			{
 				Name: "puzzle-hash",
 				Desc: "Puzzle hash to search for",
@@ -203,7 +203,7 @@ var RpcApis = []*common.TemplateRpcMethod{
 		Method:       "POST",
 		Url:          "get_coin_record_by_name",
 		JsonTemplate: `{"name": ""}`,
-		ValInfo: []*common.TemplateValue{
+		ValInfo: []*client.TemplateValue{
 			{
 				Name: "name",
 				Desc: "Coin name",
@@ -218,13 +218,13 @@ var RpcApis = []*common.TemplateRpcMethod{
 		Method:       "POST",
 		Url:          "push_tx",
 		JsonTemplate: `{"spend_bundle": ""}`,
-		ValInfo: []*common.TemplateValue{
+		ValInfo: []*client.TemplateValue{
 			{
 				Name:       "spend-bundle",
 				Desc:       "Spend bundle to submit, in JSON",
 				Type:       reflect.String,
 				Path:       "spend_bundle",
-				FormatFunc: common.String2JsonFormatFunc,
+				FormatFunc: client.String2JsonFormatFunc,
 			},
 		},
 	},
@@ -248,7 +248,7 @@ var RpcApis = []*common.TemplateRpcMethod{
 		Method:       "POST",
 		Url:          "get_mempool_item_by_tx_id",
 		JsonTemplate: `{"tx_id": ""}`,
-		ValInfo: []*common.TemplateValue{
+		ValInfo: []*client.TemplateValue{
 			{
 				Name: "tx-id",
 				Desc: "Spend bundle hash",

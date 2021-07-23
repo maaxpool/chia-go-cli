@@ -1,13 +1,13 @@
 package rpc
 
 import (
-	"chia-go-cli/logic/rpc/common"
+	"chia-go-cli/sdk/client"
 	"github.com/spf13/cobra"
 	"log"
 	"reflect"
 )
 
-type buildApiCallback func(api *common.TemplateRpcMethod) func(cmd *cobra.Command, args []string) error
+type buildApiCallback func(api *client.TemplateRpcMethod) func(cmd *cobra.Command, args []string) error
 
 var (
 	storePath string
@@ -35,7 +35,7 @@ func NewRootCommand() *cobra.Command {
 	return cmd
 }
 
-func buildApi(cmd *cobra.Command, apis []*common.TemplateRpcMethod, call buildApiCallback) {
+func buildApi(cmd *cobra.Command, apis []*client.TemplateRpcMethod, call buildApiCallback) {
 	for _, api := range apis {
 		apiCommand := &cobra.Command{
 			Use:   api.MethodName,
