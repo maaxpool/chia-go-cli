@@ -19,7 +19,7 @@ type TemplateValue struct {
 	Default    interface{}
 	Path       string
 	Data       interface{}
-	FormatFunc func(data interface{}) (interface{}, error)
+	FormatFunc func(data interface{}) (interface{}, error) `json:"-"`
 }
 
 type TemplateRpcMethod struct {
