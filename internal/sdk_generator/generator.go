@@ -37,9 +37,9 @@ func ParseAndWrite(method []*client.TemplateRpcMethod, namespace, path string) e
 		return err
 	}
 
+	_, _ = file.WriteString("// Code generated - DO NOT EDIT.\n// This file is a generated binding and any manual changes will be lost.\n")
 	_, _ = file.WriteString(fmt.Sprintf("package %s\n", namespace))
 	_, _ = file.WriteString("\n")
-	_, _ = file.WriteString("// auto generating code\n")
 	_, _ = file.WriteString("import (\n")
 	_, _ = file.WriteString("\t\"chia-go-cli/sdk/client\"\n")
 	_, _ = file.WriteString("\t\"encoding/json\"\n")
