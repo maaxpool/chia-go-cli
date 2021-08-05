@@ -15,6 +15,13 @@ func GetWalletBalance(walletId int) client.RpcMethod {
 	return req
 }
 
+// GetInitialFreezePeriod Retrieves the initial freeze period for the blockchain (no transactions allowed).
+func GetInitialFreezePeriod() client.RpcMethod {
+	req := &client.TemplateRpcMethod{}
+	_ = json.Unmarshal([]byte("{\"MethodName\":\"GetInitialFreezePeriod\",\"Desc\":\"Retrieves the initial freeze period for the blockchain (no transactions allowed).\",\"Method\":\"POST\",\"Url\":\"get_initial_freeze_period\",\"JsonTemplate\":\"{}\",\"ValInfo\":null}"), req)
+	return req
+}
+
 // GetTransaction Gets a transaction record by transaction id
 func GetTransaction(transactionId string) client.RpcMethod {
 	req := &client.TemplateRpcMethod{}
@@ -30,5 +37,31 @@ func GetTransactions(walletId int, start int, end int) client.RpcMethod {
 	req.ValInfo[0].Data = &walletId
 	req.ValInfo[1].Data = &start
 	req.ValInfo[2].Data = &end
+	return req
+}
+
+// GetNextAddress Gets a new (or not new) address
+func GetNextAddress(walletId int, newAddress bool) client.RpcMethod {
+	req := &client.TemplateRpcMethod{}
+	_ = json.Unmarshal([]byte("{\"MethodName\":\"GetNextAddress\",\"Desc\":\"Gets a new (or not new) address\",\"Method\":\"POST\",\"Url\":\"get_next_address\",\"JsonTemplate\":\"{\\\"new_address\\\": true, \\\"wallet_id\\\": 1}\",\"ValInfo\":[{\"Name\":\"wallet-id\",\"Desc\":\"Wallet Id\",\"Type\":2,\"Default\":1,\"Path\":\"wallet_id\",\"Data\":null},{\"Name\":\"new-address\",\"Desc\":\"New address\",\"Type\":1,\"Default\":1,\"Path\":\"new_address\",\"Data\":null}]}"), req)
+	req.ValInfo[0].Data = &walletId
+	req.ValInfo[1].Data = &newAddress
+	return req
+}
+
+// SendTransaction Sends a standard transaction to a target puzzle_hash.
+func SendTransaction(walletId int, address string) client.RpcMethod {
+	req := &client.TemplateRpcMethod{}
+	_ = json.Unmarshal([]byte("{\"MethodName\":\"SendTransaction\",\"Desc\":\"Sends a standard transaction to a target puzzle_hash.\",\"Method\":\"POST\",\"Url\":\"send_transaction\",\"JsonTemplate\":\"{\\\"wallet_id\\\": 1,\\\"amount\\\": 0,\\\"fee\\\": 0,\\\"address\\\":\\\"\\\"}\",\"ValInfo\":[{\"Name\":\"wallet-id\",\"Desc\":\"Wallet Id\",\"Type\":2,\"Default\":1,\"Path\":\"wallet_id\",\"Data\":null},{\"Name\":\"address\",\"Desc\":\"Address\",\"Type\":24,\"Default\":1,\"Path\":\"address\",\"Data\":null}]}"), req)
+	req.ValInfo[0].Data = &walletId
+	req.ValInfo[1].Data = &address
+	return req
+}
+
+// GetTransactionCount Gets the number of transactions in this wallet.
+func GetTransactionCount(walletId int) client.RpcMethod {
+	req := &client.TemplateRpcMethod{}
+	_ = json.Unmarshal([]byte("{\"MethodName\":\"GetTransactionCount\",\"Desc\":\"Gets the number of transactions in this wallet.\",\"Method\":\"POST\",\"Url\":\"get_transaction_count\",\"JsonTemplate\":\"{\\\"wallet_id\\\": 1}\",\"ValInfo\":[{\"Name\":\"wallet-id\",\"Desc\":\"Wallet Id\",\"Type\":2,\"Default\":1,\"Path\":\"wallet_id\",\"Data\":null}]}"), req)
+	req.ValInfo[0].Data = &walletId
 	return req
 }
