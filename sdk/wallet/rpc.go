@@ -132,7 +132,7 @@ var RpcApis = []*client.TemplateRpcMethod{
 		Desc:         "Gets transaction records",
 		Method:       "POST",
 		Url:          "get_transactions",
-		JsonTemplate: `{"wallet_id": 1}`,
+		JsonTemplate: `{"wallet_id": 1, start: 0, end: 50}`,
 		ValInfo: []*client.TemplateValue{
 			{
 				Name:    "wallet-id",
@@ -140,6 +140,20 @@ var RpcApis = []*client.TemplateRpcMethod{
 				Type:    reflect.Int,
 				Default: 1,
 				Path:    "wallet_id",
+			},
+			{
+				Name:    "start",
+				Desc:    "start",
+				Type:    reflect.Int,
+				Default: 0,
+				Path:    "start",
+			},
+			{
+				Name:    "end",
+				Desc:    "end",
+				Type:    reflect.Int,
+				Default: 50,
+				Path:    "end",
 			},
 		},
 	},
