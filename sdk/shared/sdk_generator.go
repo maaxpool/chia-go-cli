@@ -18,8 +18,8 @@ func GetConnections() client.RpcMethod {
 func OpenConnection(host string, port int) client.RpcMethod {
 	req := &client.TemplateRpcMethod{}
 	_ = json.Unmarshal([]byte("{\"MethodName\":\"OpenConnection\",\"Desc\":\"Opens a connection to another peer\",\"Method\":\"POST\",\"Url\":\"open_connection\",\"JsonTemplate\":\"{\\\"host\\\": \\\"\\\", \\\"port\\\": 0}\",\"ValInfo\":[{\"Name\":\"host\",\"Desc\":\"ip or dns name of the peer\",\"Type\":24,\"Default\":\"\",\"Path\":\"host\",\"Data\":null},{\"Name\":\"port\",\"Desc\":\"port of the peer\",\"Type\":2,\"Default\":0,\"Path\":\"port\",\"Data\":null}]}"), req)
-	req.ValInfo[0].Data = host
-	req.ValInfo[1].Data = port
+	req.ValInfo[0].Data = &host
+	req.ValInfo[1].Data = &port
 	return req
 }
 
@@ -27,7 +27,7 @@ func OpenConnection(host string, port int) client.RpcMethod {
 func CloseConnection(nodeId string) client.RpcMethod {
 	req := &client.TemplateRpcMethod{}
 	_ = json.Unmarshal([]byte("{\"MethodName\":\"CloseConnection\",\"Desc\":\"Closes a connection with a peer\",\"Method\":\"POST\",\"Url\":\"close_connection\",\"JsonTemplate\":\"{\\\"node_id\\\": \\\"\\\"}\",\"ValInfo\":[{\"Name\":\"node-id\",\"Desc\":\"node id of the peer\",\"Type\":24,\"Default\":\"\",\"Path\":\"node_id\",\"Data\":null}]}"), req)
-	req.ValInfo[0].Data = nodeId
+	req.ValInfo[0].Data = &nodeId
 	return req
 }
 

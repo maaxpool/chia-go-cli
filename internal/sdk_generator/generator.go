@@ -66,13 +66,13 @@ func genMethod(index int, rpcMethod *client.TemplateRpcMethod) string {
 		switch val.Type {
 		case reflect.Int:
 			funcParams = append(funcParams, fmt.Sprintf("%s int", lowerCamel))
-			bodyParams = append(bodyParams, fmt.Sprintf("\treq.ValInfo[%d].Data = %s", i, lowerCamel))
+			bodyParams = append(bodyParams, fmt.Sprintf("\treq.ValInfo[%d].Data = &%s", i, lowerCamel))
 		case reflect.String:
 			funcParams = append(funcParams, fmt.Sprintf("%s string", lowerCamel))
-			bodyParams = append(bodyParams, fmt.Sprintf("\treq.ValInfo[%d].Data = %s", i, lowerCamel))
+			bodyParams = append(bodyParams, fmt.Sprintf("\treq.ValInfo[%d].Data = &%s", i, lowerCamel))
 		case reflect.Bool:
 			funcParams = append(funcParams, fmt.Sprintf("%s bool", lowerCamel))
-			bodyParams = append(bodyParams, fmt.Sprintf("\treq.ValInfo[%d].Data = %s", i, lowerCamel))
+			bodyParams = append(bodyParams, fmt.Sprintf("\treq.ValInfo[%d].Data = &%s", i, lowerCamel))
 		default:
 			log.Panicf("generator api command fail, not support type: %v", val.Type)
 		}
