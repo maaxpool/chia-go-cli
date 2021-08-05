@@ -120,19 +120,27 @@ var RpcApis = []*client.TemplateRpcMethod{
 	//	Url:          "create_new_wallet",
 	//	JsonTemplate: `{}`,
 	//},
-	//{
-	//	MethodName:   "GetTransaction",
-	//	Desc:         "Gets a transaction record by transaction id",
-	//	Method:       "POST",
-	//	Url:          "get_transaction",
-	//	JsonTemplate: `{}`,
-	//},
+	{
+		MethodName:   "GetTransaction",
+		Desc:         "Gets a transaction record by transaction id",
+		Method:       "POST",
+		Url:          "get_transaction",
+		JsonTemplate: `{"transaction_id": ""}`,
+		ValInfo: []*client.TemplateValue{
+			{
+				Name: "transaction-id",
+				Desc: "Transaction id",
+				Type: reflect.String,
+				Path: "transaction_id",
+			},
+		},
+	},
 	{
 		MethodName:   "GetTransactions",
 		Desc:         "Gets transaction records",
 		Method:       "POST",
 		Url:          "get_transactions",
-		JsonTemplate: `{"wallet_id": 1, start: 0, end: 50}`,
+		JsonTemplate: `{"wallet_id": 1, "start": 0, "end": 50}`,
 		ValInfo: []*client.TemplateValue{
 			{
 				Name:    "wallet-id",
