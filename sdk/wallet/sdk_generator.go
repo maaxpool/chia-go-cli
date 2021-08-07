@@ -50,11 +50,13 @@ func GetNextAddress(walletId int, newAddress bool) client.RpcMethod {
 }
 
 // SendTransaction Sends a standard transaction to a target puzzle_hash.
-func SendTransaction(walletId int, address string) client.RpcMethod {
+func SendTransaction(walletId int, amount int, fee int, address string) client.RpcMethod {
 	req := &client.TemplateRpcMethod{}
-	_ = json.Unmarshal([]byte("{\"MethodName\":\"SendTransaction\",\"Desc\":\"Sends a standard transaction to a target puzzle_hash.\",\"Method\":\"POST\",\"Url\":\"send_transaction\",\"JsonTemplate\":\"{\\\"wallet_id\\\": 1,\\\"amount\\\": 0,\\\"fee\\\": 0,\\\"address\\\":\\\"\\\"}\",\"ValInfo\":[{\"Name\":\"wallet-id\",\"Desc\":\"Wallet Id\",\"Type\":2,\"Default\":1,\"Path\":\"wallet_id\",\"Data\":null},{\"Name\":\"address\",\"Desc\":\"Address\",\"Type\":24,\"Default\":1,\"Path\":\"address\",\"Data\":null}]}"), req)
+	_ = json.Unmarshal([]byte("{\"MethodName\":\"SendTransaction\",\"Desc\":\"Sends a standard transaction to a target puzzle_hash.\",\"Method\":\"POST\",\"Url\":\"send_transaction\",\"JsonTemplate\":\"{\\\"wallet_id\\\": 1,\\\"amount\\\": 0,\\\"fee\\\": 0,\\\"address\\\":\\\"\\\"}\",\"ValInfo\":[{\"Name\":\"wallet-id\",\"Desc\":\"Wallet Id\",\"Type\":2,\"Default\":1,\"Path\":\"wallet_id\",\"Data\":null},{\"Name\":\"amount\",\"Desc\":\"Amount\",\"Type\":2,\"Default\":null,\"Path\":\"amount\",\"Data\":null},{\"Name\":\"fee\",\"Desc\":\"fee\",\"Type\":2,\"Default\":null,\"Path\":\"fee\",\"Data\":null},{\"Name\":\"address\",\"Desc\":\"address\",\"Type\":24,\"Default\":null,\"Path\":\"address\",\"Data\":null}]}"), req)
 	req.ValInfo[0].Data = &walletId
-	req.ValInfo[1].Data = &address
+	req.ValInfo[1].Data = &amount
+	req.ValInfo[2].Data = &fee
+	req.ValInfo[3].Data = &address
 	return req
 }
 
