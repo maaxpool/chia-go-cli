@@ -1,3 +1,7 @@
+# Introduction
+This project is aimed to provide a golang binding of the Chia RPC interface.
+This project is presented to you by [MaxiPool](https://dashboard.maxipool.net).
+
 # Chia CLI
 
 Golang client for communicating with [Chia](https://www.chia.net/) RPC interfaces.
